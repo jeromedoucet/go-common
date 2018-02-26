@@ -22,9 +22,9 @@ func (s *stuf) String() string {
 func TestArrayToMapOnIdAttributeWithoutErrorAndWithSlice(t *testing.T) {
 	// given
 	array := []stuf{
-		stuf{Id: 1, FirstText: "Hello"},
-		stuf{Id: 2, SecondText: "world"},
-		stuf{Id: 3, AnInt: 42},
+		{Id: 1, FirstText: "Hello"},
+		{Id: 2, SecondText: "world"},
+		{Id: 3, AnInt: 42},
 	}
 
 	// when
@@ -48,9 +48,9 @@ func TestArrayToMapOnIdAttributeWithoutErrorAndWithSlice(t *testing.T) {
 func TestArrayToMapOnIdAttributeWithoutErrorAndWithArray(t *testing.T) {
 	// given
 	array := [3]stuf{
-		stuf{Id: 1, FirstText: "Hello"},
-		stuf{Id: 2, SecondText: "world"},
-		stuf{Id: 3, AnInt: 42},
+		{Id: 1, FirstText: "Hello"},
+		{Id: 2, SecondText: "world"},
+		{Id: 3, AnInt: 42},
 	}
 
 	// when
@@ -112,9 +112,9 @@ func TestArrayToMapOnIdAttributeWhenArrayContainsNoStruct(t *testing.T) {
 func TestArrayToMapOnIdAttributeWhenUnknownKey(t *testing.T) {
 	// given
 	array := []stuf{
-		stuf{Id: 1, FirstText: "Hello"},
-		stuf{Id: 2, SecondText: "world"},
-		stuf{Id: 3, AnInt: 42},
+		{Id: 1, FirstText: "Hello"},
+		{Id: 2, SecondText: "world"},
+		{Id: 3, AnInt: 42},
 	}
 
 	// when
@@ -135,9 +135,9 @@ func TestArrayToMapOnIdAttributeWhenUnknownKey(t *testing.T) {
 func TestArrayToMapOnIdAttributeWhenDuplicatedKey(t *testing.T) {
 	// given
 	array := []stuf{
-		stuf{Id: 1, FirstText: "Hello"},
-		stuf{Id: 2, SecondText: "world"},
-		stuf{Id: 2, AnInt: 42},
+		{Id: 1, FirstText: "Hello"},
+		{Id: 2, SecondText: "world"},
+		{Id: 2, AnInt: 42},
 	}
 
 	// when
@@ -158,9 +158,9 @@ func TestArrayToMapOnIdAttributeWhenDuplicatedKey(t *testing.T) {
 func TestArrayToMapOnIdAttributeWhenUnexportedKey(t *testing.T) {
 	// given
 	array := []stuf{
-		stuf{id: 1, FirstText: "Hello"},
-		stuf{id: 2, SecondText: "world"},
-		stuf{id: 3, AnInt: 42},
+		{id: 1, FirstText: "Hello"},
+		{id: 2, SecondText: "world"},
+		{id: 3, AnInt: 42},
 	}
 
 	// when
@@ -181,9 +181,9 @@ func TestArrayToMapOnIdAttributeWhenUnexportedKey(t *testing.T) {
 func TestArrayToMapOnIdAttributeWhenEmptyKey(t *testing.T) {
 	// given
 	array := []stuf{
-		stuf{Id: 1, FirstText: "Hello"},
-		stuf{Id: 2, SecondText: "world"},
-		stuf{Id: 2, AnInt: 42},
+		{Id: 1, FirstText: "Hello"},
+		{Id: 2, SecondText: "world"},
+		{Id: 2, AnInt: 42},
 	}
 
 	// when

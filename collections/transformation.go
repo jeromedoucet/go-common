@@ -9,7 +9,7 @@ import (
 // here is some functions that perform
 // transformations over collections (array, slice and map)
 
-// Error type that is raised when
+// TransformationError is raised when
 // an issue happened during a transformation
 type TransformationError struct {
 	msg string
@@ -25,7 +25,7 @@ func newTransformationError(msg string) *TransformationError {
 	return e
 }
 
-// transform an arbitrary array or slice to a map.
+// FromArrayToMap transform an arbitrary array or slice to a map.
 // using a field of array elements. If the array doesn't contains
 // struct, a nil map and a non nil error are returned.
 //
@@ -37,12 +37,12 @@ func newTransformationError(msg string) *TransformationError {
 // are not satisfied, a nil map and a non nil error are returned.
 //
 // This function check also that there is no key duplication. Such behavior
-// avoid silently loosing data, leading to have buggy programms. Like for the
+// avoid silently loosing data, leading to have buggy programs. Like for the
 // others rules, if a duplication is detected, a nil map and a non nil error are returned.
 //
 // NOTE : This function has been designed to be used in tests functions, not for production code.
 // It is convenient to avoid pollute tests code with loop when a map is needed from an array, but
-// it is not designed neither for performance nor for beeing precise on typing.
+// it is not designed neither for performance nor for being precise on typing.
 func FromArrayToMap(array interface{}, fieldName string) (map[interface{}]interface{}, error) {
 	if len(fieldName) == 0 {
 		return nil, newTransformationError("Empty key")
