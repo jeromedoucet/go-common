@@ -70,6 +70,11 @@ func FromArrayToMap(array interface{}, fieldName string) (map[interface{}]interf
 		if alreadyExist {
 			return nil, newTransformationError(fmt.Sprintf("Duplicated key : %v", f.Interface()))
 		}
+		k := f.Kind()
+		isHashable := k < reflect.Array || k == reflect.Ptr || k == reflect.UnsafePointer
+		if !isHashable {
+			return nil, newTransformationError("Key is not hashable")
+		}
 		res[f.Interface()] = elem.Interface()
 	}
 	return res, nil

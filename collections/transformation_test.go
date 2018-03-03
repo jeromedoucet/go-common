@@ -15,6 +15,10 @@ type stuf struct {
 	AnInt      int
 }
 
+type stuf2 struct {
+	ByteId []byte
+}
+
 func (s *stuf) String() string {
 	return fmt.Sprintf("Id: %d, FirstText: %s, SecondText: %s, AnInt: %d", s.Id, s.FirstText, s.SecondText, s.AnInt)
 }
@@ -197,6 +201,29 @@ func TestArrayToMapOnIdAttributeWhenEmptyKey(t *testing.T) {
 		t.Errorf("expect the returned error to be an collections.TransformationError, but got %t", err)
 	}
 	if err.Error() != "Empty key" {
+		t.Errorf("bad error message. got %s", err.Error())
+	}
+}
+
+func TestArrayToMapOnIdAttributeWhenKeyNotHashable(t *testing.T) {
+	// given
+	array := []stuf2{
+		{ByteId: []byte("1")},
+		{ByteId: []byte("2")},
+		{ByteId: []byte("3")},
+	}
+
+	// when
+	_, err := collections.FromArrayToMap(array, "ByteId")
+
+	// then
+	if err == nil {
+		t.Error("expect to have an error, but got nil")
+	}
+	if _, ok := err.(*collections.TransformationError); !ok {
+		t.Errorf("expect the returned error to be an collections.TransformationError, but got %t", err)
+	}
+	if err.Error() != "Key is not hashable" {
 		t.Errorf("bad error message. got %s", err.Error())
 	}
 }
